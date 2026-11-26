@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --c-peat: #17120f; --c-loam: #261d17; --c-strata: #3b2e24; --c-ridge: #836d58;
+  --c-chalk: #ece9e1; --c-dust: #a99b88; --c-marigold: #ffb41f; --c-ember: #ff5a3c; --c-tarn: #3aa6e0;
+  --dir: 1;
+}
+[dir='rtl'] { --dir: -1; }
+[data-contrast='high'] { --c-ridge: #d6c7b0; --c-dust: #d8cdbb; }
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0; background: var(--c-peat); color: var(--c-chalk);
+  font-family: Assistant, system-ui, sans-serif; overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  touch-action: manipulation;
+}
+html[lang='he'] body { line-height: 1.55; }
+:focus-visible { outline: 2px solid var(--c-marigold); outline-offset: 2px; }
+button { font: inherit; color: inherit; }
+button:disabled { cursor: default; }
+
+@layer components {
+  .btn {
+    @apply flex min-h-[48px] w-full items-center justify-center rounded border border-ridge bg-peat px-4 text-body text-chalk transition-transform duration-100 ease-out active:translate-y-0.5;
+  }
+  .btn-primary { @apply border-marigold bg-marigold font-bold text-peat shadow-primary; }
+  .panel { @apply rounded border border-ridge bg-loam shadow-raised; }
+  .ctl {
+    @apply flex h-11 min-w-[44px] items-center justify-center gap-1.5 rounded border border-ridge bg-peat px-2.5 text-meta text-chalk transition-transform duration-100 ease-out active:scale-95;
+  }
+}
+
+.field-canvas { touch-action: none; image-rendering: pixelated; }
+
+/* Dialogs: occasional, so they animate; exit is faster than entrance. */
+.dim { background: rgba(10, 7, 5, 0.72); }
+.dim[data-state='open'] { animation: dim-in 200ms cubic-bezier(.23,1,.32,1); }
+.dim[data-state='closed'] { animation: dim-out 140ms cubic-bezier(.23,1,.32,1) forwards; }
+.sheet[data-state='open'] { animation: sheet-in 200ms cubic-bezier(.23,1,.32,1); }
+.sheet[data-state='closed'] { animation: sheet-out 140ms cubic-bezier(.23,1,.32,1) forwards; }
+@keyframes dim-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes dim-out { to { opacity: 0; } }
+@keyframes sheet-in { from { opacity: 0; transform: translateY(-48%) scale(0.95); } to { opacity: 1; transform: translateY(-50%) scale(1); } }
+@keyframes sheet-out { to { opacity: 0; transform: translateY(-50%) scale(0.97); } }
+
+.toast-in { animation: toast-in 200ms cubic-bezier(.23,1,.32,1); }
+@keyframes toast-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Reduced motion keeps meaning (state changes, colour) and drops movement. */
+[data-motion='reduced'] .dim, [data-motion='reduced'] .sheet, [data-motion='reduced'] .toast-in { animation-duration: 1ms !important; }
+[data-motion='reduced'] .meter-fill, [data-motion='reduced'] .hold-fill { transition-duration: 1ms !important; }
+
+.gradient-none { background-image: none; }
