@@ -7,7 +7,7 @@ export const SOLUTIONS = {
   'fun-01': give('climber', 20),
   'fun-02': [at(0, 'builder', 198)],
   'fun-03': [at(0, 'digger', 300)],
-  'fun-04': give('floater', 12),
+  'fun-04': give('floater', 16),
   'tri-01': [at(0, 'basher', 247)],
   'tri-02': give('climber', 8),
   'tri-03': [at(0, 'miner', 270)],
