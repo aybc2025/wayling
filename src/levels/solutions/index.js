@@ -1,0 +1,23 @@
+// One recorded solution per level. Entries fire when their creature reaches the
+// condition; see engine/script.js. CI runs every one and fails if a level is not won.
+const give = (skill, n) => Array.from({ length: n }, (_, i) => ({ id: i, skill }));
+const at = (id, skill, x, state = 'walk') => ({ id, skill, at: { x, state } });
+
+export const SOLUTIONS = {
+  'fun-01': [],
+  'fun-02': [at(0, 'builder', 198)],
+  'fun-03': [at(0, 'digger', 300)],
+  'fun-04': give('floater', 12),
+  'tri-01': [at(0, 'basher', 247)],
+  'tri-02': give('climber', 8),
+  'tri-03': [at(0, 'miner', 270)],
+  'tri-04': [at(0, 'blocker', 388)],
+  'tax-01': [...give('floater', 12), at(0, 'digger', 300)],
+  'tax-02': [at(0, 'builder', 198), at(1, 'builder', 222), at(2, 'builder', 246), at(3, 'builder', 270)],
+  'tax-03': [at(0, 'basher', 147), at(1, 'builder', 298), at(2, 'builder', 322)],
+  'tax-04': [...give('climber', 6), ...give('floater', 6)],
+  'may-01': [...give('floater', 12), at(0, 'builder', 158), at(0, 'basher', 296)],
+  'may-02': [...give('floater', 16), at(0, 'digger', 196), at(0, 'builder', 298)],
+  'may-03': [at(0, 'miner', 330)],
+  'may-04': [...give('floater', 18), at(0, 'builder', 218), at(1, 'builder', 242), at(2, 'builder', 266), at(2, 'basher', 336)]
+};
