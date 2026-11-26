@@ -23,10 +23,9 @@ describe('levels', () => {
       expect(r.saved).toBeGreaterThanOrEqual(level.need);
     });
 
-    it(`${level.id} is not won by doing nothing unless it is the tutorial`, () => {
+    it(`${level.id} is not won by doing nothing`, () => {
       const r = runScript(level, []);
-      if (level.id === 'fun-01') expect(r.status).toBe('won');
-      else expect(r.status).toBe('lost');
+      expect(r.status).toBe('lost');
     });
   }
 });

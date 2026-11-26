@@ -4,7 +4,7 @@ const give = (skill, n) => Array.from({ length: n }, (_, i) => ({ id: i, skill }
 const at = (id, skill, x, state = 'walk') => ({ id, skill, at: { x, state } });
 
 export const SOLUTIONS = {
-  'fun-01': [],
+  'fun-01': give('climber', 14),
   'fun-02': [at(0, 'builder', 198)],
   'fun-03': [at(0, 'digger', 300)],
   'fun-04': give('floater', 12),

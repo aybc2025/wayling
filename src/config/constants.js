@@ -8,6 +8,8 @@ export const MAX_DROP = 6;       // drop a walker walks down without falling
 export const FATAL_FALL = 60;    // fall distance that kills a non-floater
 export const FLOAT_AFTER = 8;    // fall distance after which a floater opens up
 
+export const WALK_EVERY = 2;      // walkers advance one pixel every N ticks (lower = faster)
+
 export const FUSE_TICKS = 5 * TICK_HZ;
 export const EXIT_TICKS = 14;
 export const HATCH_OPEN_TICKS = 45;
@@ -33,5 +35,5 @@ export const ST = {
 export const DYING = [ST.SPLAT, ST.DROWN, ST.BURN, ST.TRAPPED, ST.BOMBED, ST.EXIT];
 
 export function spawnInterval(rate) {
-  return 8 + Math.round((99 - rate) * 1.5);
+  return 16 + Math.round((99 - rate) * 3);
 }

@@ -20,7 +20,7 @@ const run = (sim, n) => { for (let i = 0; i < n; i++) sim.tick(); };
 describe('creature rules', () => {
   it('walks right and turns at a wall', () => {
     const sim = spawnOne(mk({ terrain: [rect(0, 100, 300, 28), rect(100, 0, 10, 100)] }));
-    run(sim, 110);
+    run(sim, 220);
     const c = sim.creatures[0];
     expect(c.dir).toBe(-1);
     expect(c.x).toBeLessThan(100);
@@ -28,10 +28,10 @@ describe('creature rules', () => {
 
   it('steps up 5px but not 6px', () => {
     const a = spawnOne(mk({ terrain: [rect(0, 100, 300, 28), rect(100, 95, 200, 5)], hatch: { x: 20, y: 99 }, door: { x: 290, y: 94 } }));
-    run(a, 150);
+    run(a, 300);
     expect(a.creatures[0].x).toBeGreaterThan(105);
     const b = spawnOne(mk({ terrain: [rect(0, 100, 300, 28), rect(100, 94, 200, 6)], hatch: { x: 20, y: 99 } }));
-    run(b, 150);
+    run(b, 300);
     expect(b.creatures[0].x).toBeLessThan(100);
   });
 
