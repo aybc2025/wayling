@@ -21,6 +21,8 @@ describe('levels', () => {
       expect(r.unfired.map((u) => u.id)).toEqual([]);
       expect(r.status).toBe('won');
       expect(r.saved).toBeGreaterThanOrEqual(level.need);
+      // 100% must be reachable. tri-04 is the exception: its blocker has to stay behind.
+      expect(r.saved).toBe(level.id === 'tri-04' ? level.count - 1 : level.count);
     });
 
     it(`${level.id} is not won by doing nothing`, () => {
