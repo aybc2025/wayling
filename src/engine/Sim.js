@@ -1,5 +1,5 @@
 import {
-  TICK_HZ, ST, SKILLS, FUSE_TICKS, EXIT_TICKS, HATCH_OPEN_TICKS, CRATER_R, DEATH_TICKS, spawnInterval
+  TICK_HZ, ST, SKILLS, FUSE_TICKS, EXIT_TICKS, HATCH_OPEN_TICKS, CRATER_R, DEATH_TICKS, spawnInterval, WALK_EVERY
 } from '../config/constants.js';
 import { buildTerrain } from '../levels/loader.js';
 import { makeCreature, canAssign, applySkill, isDying } from './Creature.js';
@@ -133,7 +133,9 @@ export class Sim {
         else if (r === 'void') { c.state = ST.SPLAT; this.remove(c, false); }
         break;
       }
-      case ST.WALK: walkStep(c, T, this.blockers); this.checkExit(c); break;
+      case ST.WALK:
+        if (c.age % WALK_EVERY === 0) { walkStep(c, T, this.blockers); this.checkExit(c); }
+        break;
       case ST.CLIMB: climbStep(c, T); break;
       case ST.BLOCK: if (!grounded(T, c)) startFall(c); break;
       case ST.BUILD: buildStep(c, T, emit); break;
