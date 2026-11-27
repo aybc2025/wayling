@@ -4,7 +4,7 @@ import {
 import { buildTerrain } from '../levels/loader.js';
 import { makeCreature, canAssign, applySkill, isDying } from './Creature.js';
 import { walkStep, climbStep, fallStep, startFall, grounded } from './motion.js';
-import { buildStep } from './skills/build.js';
+import { buildStep, stowStep } from './skills/build.js';
 import { bashStep } from './skills/bash.js';
 import { mineStep } from './skills/mine.js';
 import { digStep } from './skills/dig.js';
@@ -139,6 +139,7 @@ export class Sim {
       case ST.CLIMB: climbStep(c, T); break;
       case ST.BLOCK: if (!grounded(T, c)) startFall(c); break;
       case ST.BUILD: buildStep(c, T, emit); break;
+      case ST.STOW: stowStep(c, T); break;
       case ST.BASH: bashStep(c, T, emit); break;
       case ST.MINE: mineStep(c, T, emit); break;
       case ST.DIG: digStep(c, T, emit); break;

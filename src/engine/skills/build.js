@@ -1,5 +1,5 @@
-import { BRICK_TICKS, ST } from '../../config/constants.js';
-import { clear, startFall } from '../motion.js';
+import { BRICK_TICKS, STOW_TICKS, ST } from '../../config/constants.js';
+import { clear, grounded, startFall } from '../motion.js';
 import { MAT } from '../../config/constants.js';
 
 /** One brick every BRICK_TICKS: lay, rise 1px, advance 2px. 12 bricks per assignment. */
@@ -19,6 +19,14 @@ export function buildStep(c, T, emit) {
   if (t >= BRICK_TICKS) {
     c.t = 0;
     c.steps -= 1;
-    if (c.steps <= 0) c.state = ST.WALK;
+    if (c.steps <= 0) c.state = ST.STOW;
   }
+}
+
+/** Grace period after the last brick: the walker packs the bricks away, then walks on.
+ *  Assigning the builder again during this window resumes building. */
+export function stowStep(c, T) {
+  if (!grounded(T, c)) { startFall(c); return; }
+  c.t++;
+  if (c.t >= STOW_TICKS) { c.t = 0; c.state = ST.WALK; }
 }

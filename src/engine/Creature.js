@@ -23,6 +23,7 @@ export function canAssign(c, skill) {
     case 'climber': return !c.climber;
     case 'floater': return !c.floater;
     case 'bomber': return c.fuse < 0;
+    case 'builder': return c.state === ST.WALK || c.state === ST.STOW;
     default: return c.state === ST.WALK;
   }
 }
