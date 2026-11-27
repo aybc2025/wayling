@@ -4,7 +4,7 @@ import { COLORS as C, SCARF, DEFAULT_SCARF } from './palette.js';
 const r = (ctx, x, y, w, h) => ctx.fillRect(x, y, w, h);
 
 const SKILL_FOR_STATE = {
-  [ST.CLIMB]: 'climber', [ST.BLOCK]: 'blocker', [ST.BUILD]: 'builder',
+  [ST.CLIMB]: 'climber', [ST.BLOCK]: 'blocker', [ST.BUILD]: 'builder', [ST.STOW]: 'builder',
   [ST.BASH]: 'basher', [ST.MINE]: 'miner', [ST.DIG]: 'digger'
 };
 
@@ -68,6 +68,7 @@ export function drawCreature(ctx, c, tick) {
     case ST.CLIMB: r(ctx, 3, -11 + f, 2, 2); r(ctx, 3, -6 - f, 2, 1); break;
     case ST.BLOCK: r(ctx, -5, -5, 11, 1); break;
     case ST.BUILD: r(ctx, 3, -5, 2, 1); ctx.fillStyle = SCARF.builder; r(ctx, 3, -4, 3, 1); break;
+    case ST.STOW: { const k = Math.min(2, c.t >> 2); r(ctx, 3 - k, -5 + k, 2, 1); ctx.fillStyle = SCARF.builder; r(ctx, 2 - k, -4 + k, 3 - k, 1); break; }
     case ST.BASH: r(ctx, 3, -6, 3 + f, 1); ctx.fillStyle = C.chalk; r(ctx, 6 + f, -7, 1, 3); break;
     case ST.MINE: r(ctx, 3, -5, 2, 1); ctx.fillStyle = C.chalk; r(ctx, 5, -6 + f, 1, 3); break;
     case ST.DIG: r(ctx, -3, -3, 1, 2); r(ctx, 3, -3, 1, 2); ctx.fillStyle = C.chalk; r(ctx, -1, 0, 3, 1); break;

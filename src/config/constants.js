@@ -15,6 +15,7 @@ export const EXIT_TICKS = 14;
 export const HATCH_OPEN_TICKS = 45;
 export const BRICK_TICKS = 10;
 export const BRICKS = 12;
+export const STOW_TICKS = 12;   // grace after the last brick: put the bricks back, can be re-assigned
 export const BASH_TICKS = 3;
 export const MINE_TICKS = 8;
 export const DIG_TICKS = 6;
@@ -27,7 +28,7 @@ export const MAT_BY_NAME = { air: 0, dirt: 1, steel: 2, owl: 3, owr: 4 };
 export const SKILLS = ['climber', 'floater', 'bomber', 'blocker', 'builder', 'basher', 'miner', 'digger'];
 
 export const ST = {
-  FALL: 'fall', WALK: 'walk', CLIMB: 'climb', BLOCK: 'block', BUILD: 'build',
+  FALL: 'fall', WALK: 'walk', CLIMB: 'climb', BLOCK: 'block', BUILD: 'build', STOW: 'stow',
   BASH: 'bash', MINE: 'mine', DIG: 'dig', EXIT: 'exit',
   SPLAT: 'splat', DROWN: 'drown', BURN: 'burn', TRAPPED: 'trapped', BOMBED: 'bombed'
 };
